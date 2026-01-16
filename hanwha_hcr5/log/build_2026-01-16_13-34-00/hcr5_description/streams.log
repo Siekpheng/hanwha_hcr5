@@ -1,0 +1,49 @@
+[0.315s] Invoking command in '/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description': PYTHONPATH=/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/build
+[0.451s] running develop
+[0.529s] Removing /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages/hcr5-description.egg-link (link to .)
+[0.542s] Invoked command in '/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description' returned '0': PYTHONPATH=/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/build
+[0.544s] Invoking command in '/home/forsaken/Documents/hanwha_hcr5/src/hcr5_description': PYTHONPATH=/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/hcr5_description build --build-base /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/build install --record /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/install.log --single-version-externally-managed install_data --force
+[0.667s] running egg_info
+[0.667s] writing ../../build/hcr5_description/hcr5_description.egg-info/PKG-INFO
+[0.667s] writing dependency_links to ../../build/hcr5_description/hcr5_description.egg-info/dependency_links.txt
+[0.667s] writing entry points to ../../build/hcr5_description/hcr5_description.egg-info/entry_points.txt
+[0.667s] writing requirements to ../../build/hcr5_description/hcr5_description.egg-info/requires.txt
+[0.667s] writing top-level names to ../../build/hcr5_description/hcr5_description.egg-info/top_level.txt
+[0.669s] reading manifest file '../../build/hcr5_description/hcr5_description.egg-info/SOURCES.txt'
+[0.675s] writing manifest file '../../build/hcr5_description/hcr5_description.egg-info/SOURCES.txt'
+[0.675s] running build
+[0.675s] running build_py
+[0.675s] creating /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/build
+[0.675s] creating /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/build/lib
+[0.675s] creating /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/build/lib/hcr5_description
+[0.675s] copying hcr5_description/__init__.py -> /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/build/lib/hcr5_description
+[0.675s] running install
+[0.675s] running install_lib
+[0.676s] creating /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages/hcr5_description
+[0.676s] copying /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/build/lib/hcr5_description/__init__.py -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages/hcr5_description
+[0.676s] byte-compiling /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages/hcr5_description/__init__.py to __init__.cpython-310.pyc
+[0.676s] running install_data
+[0.676s] copying resource/hcr5_description -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/ament_index/resource_index/packages
+[0.676s] copying package.xml -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description
+[0.677s] copying launch/gazebo.launch.py -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/launch
+[0.677s] copying launch/real_robot_rviz.launch.py -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/launch
+[0.677s] copying launch/display.launch.py -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/launch
+[0.677s] copying urdf/hcr5.urdf -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/urdf
+[0.677s] copying urdf/vacuum_gripper.xacro -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/urdf
+[0.677s] copying urdf/materials.xacro -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/urdf
+[0.677s] copying urdf/hcr5.xacro -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/urdf
+[0.677s] copying urdf/hcr5.gazebo -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/urdf
+[0.677s] copying meshes/link4_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+[0.677s] copying meshes/link5_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+[0.678s] copying meshes/base_link.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+[0.678s] copying meshes/link2_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+[0.679s] copying meshes/link1_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+[0.679s] copying meshes/link3_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+[0.679s] copying meshes/link6_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+[0.680s] copying config/hcr5_controllers.yaml -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/config
+[0.680s] copying rviz/hcr5.rviz -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/rviz
+[0.680s] running install_egg_info
+[0.681s] Copying ../../build/hcr5_description/hcr5_description.egg-info to /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages/hcr5_description-0.0.0-py3.10.egg-info
+[0.681s] running install_scripts
+[0.692s] writing list of installed files to '/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/install.log'
+[0.705s] Invoked command in '/home/forsaken/Documents/hanwha_hcr5/src/hcr5_description' returned '0': PYTHONPATH=/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/hcr5_description build --build-base /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/build install --record /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/install.log --single-version-externally-managed install_data --force

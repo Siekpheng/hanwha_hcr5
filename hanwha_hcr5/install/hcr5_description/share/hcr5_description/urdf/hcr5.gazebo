@@ -1,0 +1,11 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <gazebo reference="base_link"><visual><material><ambient>0.5 0.5 0.5 1</ambient><diffuse>0.5 0.5 0.5 1</diffuse></material></visual></gazebo>
+  <gazebo reference="link1_1"><visual><material><ambient>0.5 0.5 0.5 1</ambient><diffuse>0.5 0.5 0.5 1</diffuse></material></visual></gazebo>
+  <gazebo reference="link2_1"><visual><material><ambient>0.5 0.5 0.5 1</ambient><diffuse>0.5 0.5 0.5 1</diffuse></material></visual></gazebo>
+
+  <gazebo reference="link3_1"><visual><material><ambient>0.8 0.2 0.1 1</ambient><diffuse>0.8 0.2 0.1 1</diffuse></material></visual></gazebo>
+  <gazebo reference="link4_1"><visual><material><ambient>0.8 0.2 0.1 1</ambient><diffuse>0.8 0.2 0.1 1</diffuse></material></visual></gazebo>
+  <gazebo reference="link5_1"><visual><material><ambient>0.8 0.2 0.1 1</ambient><diffuse>0.8 0.2 0.1 1</diffuse></material></visual></gazebo>
+
+  <gazebo reference="link6_1"><visual><material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse><specular>0.8 0.8 0.8 1</specular></material></visual></gazebo>
+</robot>

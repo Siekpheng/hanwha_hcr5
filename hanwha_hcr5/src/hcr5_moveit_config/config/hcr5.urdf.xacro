@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hcr5">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- Import hcr5 urdf file -->
+    <xacro:include filename="$(find hcr5_description)/urdf/hcr5.xacro" />
+
+    <!-- Import control_xacro -->
+    <xacro:include filename="hcr5.ros2_control.xacro" />
+
+
+    <xacro:hcr5_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+
+</robot>

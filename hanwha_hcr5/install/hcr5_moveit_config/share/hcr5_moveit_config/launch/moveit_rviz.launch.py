@@ -1,0 +1,1 @@
+/home/forsaken/Documents/hanwha_hcr5/src/hcr5_moveit_config/launch/moveit_rviz.launch.py

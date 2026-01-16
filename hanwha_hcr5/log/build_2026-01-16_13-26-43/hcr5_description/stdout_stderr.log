@@ -1,0 +1,43 @@
+running develop
+running egg_info
+creating hcr5_description.egg-info
+writing hcr5_description.egg-info/PKG-INFO
+writing dependency_links to hcr5_description.egg-info/dependency_links.txt
+writing entry points to hcr5_description.egg-info/entry_points.txt
+writing requirements to hcr5_description.egg-info/requires.txt
+writing top-level names to hcr5_description.egg-info/top_level.txt
+writing manifest file 'hcr5_description.egg-info/SOURCES.txt'
+reading manifest file 'hcr5_description.egg-info/SOURCES.txt'
+writing manifest file 'hcr5_description.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages/hcr5-description.egg-link (link to .)
+
+Installed /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description
+running symlink_data
+creating /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/ament_index
+creating /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/ament_index/resource_index
+creating /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/ament_index/resource_index/packages
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/resource/hcr5_description -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/ament_index/resource_index/packages
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/package.xml -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description
+creating /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/launch
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/launch/gazebo.launch.py -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/launch
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/launch/real_robot_rviz.launch.py -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/launch
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/launch/display.launch.py -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/launch
+creating /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/urdf
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/urdf/hcr5.urdf -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/urdf
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/urdf/vacuum_gripper.xacro -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/urdf
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/urdf/materials.xacro -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/urdf
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/urdf/hcr5.xacro -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/urdf
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/urdf/hcr5.gazebo -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/urdf
+creating /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/meshes/link4_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/meshes/link5_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/meshes/base_link.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/meshes/link2_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/meshes/link1_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/meshes/link3_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/meshes/link6_1.stl -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/meshes
+creating /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/config
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/config/hcr5_controllers.yaml -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/config
+creating /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/rviz
+symbolically linking /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/rviz/hcr5.rviz -> /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/share/hcr5_description/rviz

@@ -1,0 +1,16 @@
+[0.314s] Invoking command in '/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description': PYTHONPATH=/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/build --no-deps symlink_data
+[0.446s] running develop
+[0.523s] running egg_info
+[0.523s] writing hcr5_description.egg-info/PKG-INFO
+[0.524s] writing dependency_links to hcr5_description.egg-info/dependency_links.txt
+[0.524s] writing entry points to hcr5_description.egg-info/entry_points.txt
+[0.524s] writing requirements to hcr5_description.egg-info/requires.txt
+[0.524s] writing top-level names to hcr5_description.egg-info/top_level.txt
+[0.525s] reading manifest file 'hcr5_description.egg-info/SOURCES.txt'
+[0.531s] writing manifest file 'hcr5_description.egg-info/SOURCES.txt'
+[0.532s] running build_ext
+[0.532s] Creating /home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages/hcr5-description.egg-link (link to .)
+[0.533s] 
+[0.533s] Installed /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description
+[0.533s] running symlink_data
+[0.548s] Invoked command in '/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description' returned '0': PYTHONPATH=/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/forsaken/Documents/hanwha_hcr5/install/hcr5_description/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/forsaken/Documents/hanwha_hcr5/build/hcr5_description/build --no-deps symlink_data
