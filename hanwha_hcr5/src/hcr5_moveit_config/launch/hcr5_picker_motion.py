@@ -73,7 +73,7 @@ class HCR5SuctionVisionController(Node):
         elif key == ord(' '): 
             if self.latest_coords:
                 # Set Z to 0.05 (5cm above base) to avoid table collisions during initial tests
-                self.send_move_goal(self.latest_coords[0], self.latest_coords[1], 0.05)
+                self.send_move_goal(self.latest_coords[0], self.latest_coords[1], 0.04)
 
     def send_move_goal(self, x, y, z):
         if not self.move_group_client.wait_for_server(timeout_sec=1.0):
