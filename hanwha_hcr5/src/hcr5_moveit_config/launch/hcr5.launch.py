@@ -13,6 +13,7 @@ def generate_launch_description():
     pkg_moveit_config = FindPackageShare('hcr5_moveit_config')
     pkg_ros_gz_sim = FindPackageShare('ros_gz_sim')
     cube_file = PathJoinSubstitution([pkg_description, 'models', 'purple_cube.sdf'])
+    cube2_file = PathJoinSubstitution([pkg_description, 'models', 'blue_cube.sdf'])
     
     xacro_file = PathJoinSubstitution([pkg_description, 'urdf', 'hcr5.xacro'])
     rviz_config_path = PathJoinSubstitution([pkg_moveit_config, 'config', 'moveit.rviz'])
@@ -106,6 +107,19 @@ def generate_launch_description():
         output='screen'
     )
 
+    spawn_cube2 = Node(
+        package="ros_gz_sim",
+        executable="create",
+        arguments=[
+            "-file", cube2_file,
+            "-name", "blue_cube",
+            "-x", "0.1",   # 40cm in front of robot base
+            "-y", "0.4",
+            "-z", "0.9"   # 70cm table height + 5cm to drop onto it
+        ],
+        output='screen'
+    )
+
     return LaunchDescription([
         # Force EVERYTHING in this file to use Sim Time
         SetParameter(name='use_sim_time', value=True),
@@ -119,4 +133,5 @@ def generate_launch_description():
         joint_state_broadcaster,
         arm_controller,
         spawn_cube,
+        spawn_cube2
     ])

@@ -1,1 +1,0 @@
-/home/forsaken/Documents/hanwha_hcr5/src/hcr5_moveit_config/launch/lauch_hcr5.lauch.py

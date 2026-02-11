@@ -1,3 +1,3 @@
 # generated from colcon_powershell/shell/template/hook_prepend_value.ps1.em
 
-colcon_prepend_unique_value PYTHONPATH "$env:COLCON_CURRENT_PREFIX\/home/forsaken/Documents/hanwha_hcr5/build/hcr5_description"
+colcon_prepend_unique_value PYTHONPATH "$env:COLCON_CURRENT_PREFIX\/home/forsaken/Documents/hanwha_hcr5/hanwha_hcr5/build/hcr5_description"

@@ -103,7 +103,7 @@
             <remapping>switch:=vacuum_on</remapping>
           </ros>
           <link_name>${prefix}suction_cup_link</link_name>
-          <max_distance>0.1</max_distance>
+          <max_distance>0.05</max_distance>
           </plugin>
     </gazebo>
 

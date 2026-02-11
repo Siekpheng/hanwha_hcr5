@@ -1,8 +1,8 @@
+#!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
 from sensor_msgs.msg import Image
-from std_msgs.msg import Bool
 from geometry_msgs.msg import PoseStamped
 from moveit_msgs.action import MoveGroup
 from moveit_msgs.msg import Constraints, PositionConstraint, OrientationConstraint, MotionPlanRequest
@@ -12,133 +12,123 @@ import cv2
 import numpy as np
 import os
 
-class HCR5SloMoPicker(Node):
+class HCR5SuctionVisionController(Node):
     def __init__(self):
-        super().__init__('hcr5_slomo_picker')
-        
-        # --- Settings ---
-        self.TARGET_Z = 0.04
+        super().__init__('hcr5_vision_controller')
         self.bridge = CvBridge()
         self.latest_coords = None
-        self.vacuum_state = False  # Track suction state
+        self.target_color_mode = "PURPLE" 
         
+        # HSV Color Ranges for Gazebo
+        self.color_configs = {
+            "PURPLE": {"low": np.array([120, 50, 50]), "high": np.array([170, 255, 255]), "bgr": (255, 0, 255)},
+            "BLUE": {"low": np.array([100, 50, 50]), "high": np.array([140, 255, 255]), "bgr": (255, 0, 0)}
+        }
+
         # Load Calibration Matrix
         script_dir = os.path.dirname(os.path.realpath(__file__))
-        file_path = os.path.join(script_dir, "table_calibration.npy")
-        try:
-            self.M = np.load(file_path)
+        calib_path = os.path.join(script_dir, "table_calibration.npy")
+        if os.path.exists(calib_path):
+            self.M = np.load(calib_path)
             self.get_logger().info("Calibration loaded.")
-        except Exception as e:
-            self.get_logger().error(f"Calibration error: {e}")
+        else:
+            self.get_logger().error(f"Calibration file NOT FOUND at {calib_path}")
             self.M = None
 
-        # Publishers & Subscriptions
-        self._action_client = ActionClient(self, MoveGroup, 'move_action')
-        self.vacuum_pub = self.create_publisher(Bool, '/hcr5/vacuum_on', 10)
+        # MoveIt Action Client
+        self.move_group_client = ActionClient(self, MoveGroup, 'move_action')
+        
+        # Camera Subscription
         self.sub = self.create_subscription(Image, 'camera1/image_raw', self.image_callback, 10)
         
-        self.get_logger().info("=" * 40)
-        self.get_logger().info("SLOW MOTION MODE ACTIVE")
-        self.get_logger().info("SPACE : Move above cube (Slow)")
-        self.get_logger().info("'f'   : Toggle Vacuum ON/OFF")
-        self.get_logger().info("=" * 40)
+        self.get_logger().info("-" * 30)
+        self.get_logger().info("HCR5 SUCTION TIP CONTROL READY")
+        self.get_logger().info("SPACE: Move to Object | P: Purple | B: Blue")
+        self.get_logger().info("-" * 30)
 
     def image_callback(self, msg):
-        if self.M is None: return
         frame = self.bridge.imgmsg_to_cv2(msg, "bgr8")
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-
-        mask = cv2.inRange(hsv, np.array([120, 40, 40]), np.array([175, 255, 255]))
-        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        mask = cv2.inRange(hsv, self.color_configs[self.target_color_mode]["low"], 
+                                self.color_configs[self.target_color_mode]["high"])
         
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         self.latest_coords = None
-        for cnt in contours:
-            if cv2.contourArea(cnt) > 150:
-                M_moments = cv2.moments(cnt)
-                if M_moments["m00"] != 0:
-                    u = int(M_moments["m10"] / M_moments["m00"])
-                    v = int(M_moments["m01"] / M_moments["m00"])
-                    
+
+        if contours:
+            largest = max(contours, key=cv2.contourArea)
+            if cv2.contourArea(largest) > 200:
+                Moments = cv2.moments(largest)
+                if Moments["m00"] != 0 and self.M is not None:
+                    u, v = int(Moments["m10"]/Moments["m00"]), int(Moments["m01"]/Moments["m00"])
                     pixel_pt = np.array([u, v, 1], dtype="float32")
                     world_pt = np.dot(self.M, pixel_pt)
                     self.latest_coords = (world_pt[0] / world_pt[2], world_pt[1] / world_pt[2])
-
                     cv2.circle(frame, (u, v), 8, (0, 255, 0), -1)
-                    cv2.putText(frame, f"VACUUM: {'ON' if self.vacuum_state else 'OFF'}", (10, 30), 
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
-        cv2.imshow("Slow Picker Feed", frame)
+        cv2.imshow("Vision Control", frame)
         key = cv2.waitKey(1) & 0xFF
-        
-        if key == ord(' '):
+        if key == ord('p'): self.target_color_mode = "PURPLE"
+        elif key == ord('b'): self.target_color_mode = "BLUE"
+        elif key == ord(' '): 
             if self.latest_coords:
-                self.send_move_command(self.latest_coords[0], self.latest_coords[1], self.TARGET_Z)
-        
-        elif key == ord('f'):
-            self.vacuum_state = not self.vacuum_state
-            msg_vac = Bool()
-            msg_vac.data = self.vacuum_state
-            self.vacuum_pub.publish(msg_vac)
-            self.get_logger().info(f"Vacuum toggled: {self.vacuum_state}")
+                # Set Z to 0.05 (5cm above base) to avoid table collisions during initial tests
+                self.send_move_goal(self.latest_coords[0], self.latest_coords[1], 0.05)
 
-    def send_move_command(self, x, y, z):
+    def send_move_goal(self, x, y, z):
+        if not self.move_group_client.wait_for_server(timeout_sec=1.0):
+            return
+
         goal_msg = MoveGroup.Goal()
-        request = MotionPlanRequest()
-        request.group_name = "arm"
-        
-        # --- SLOW MOTION SETTINGS ---
-        request.max_velocity_scaling_factor = 0.7      # 10% of max speed
-        request.max_acceleration_scaling_factor = 0.7  # 10% of max acceleration
-        
-        request.num_planning_attempts = 15
-        request.allowed_planning_time = 5.0
-        request.pipeline_id = "ompl"
+        req = MotionPlanRequest()
+        req.group_name = "arm"
+        req.num_planning_attempts = 10
+        req.max_velocity_scaling_factor = 0.5
+        req.allowed_planning_time = 5.0 # Fixed the 0.0s timeout issue
 
         constraints = Constraints()
         
-        # Position
+        # Position Constraint
         pos_con = PositionConstraint()
         pos_con.header.frame_id = "base_link"
-        pos_con.link_name = "suction_cup_link"
-        
-        bounding_box = SolidPrimitive()
-        bounding_box.type = SolidPrimitive.BOX
-        bounding_box.dimensions = [0.005, 0.005, 0.005] 
+        pos_con.link_name = "suction_cup_link" # Target the cup link directly
+        pos_con.weight = 1.0
         
         target_pose = PoseStamped()
         target_pose.pose.position.x = x
         target_pose.pose.position.y = y
         target_pose.pose.position.z = z
         
-        pos_con.constraint_region.primitives.append(bounding_box)
+        box = SolidPrimitive()
+        box.type, box.dimensions = SolidPrimitive.BOX, [0.01, 0.01, 0.01]
+        
+        pos_con.constraint_region.primitives.append(box)
         pos_con.constraint_region.primitive_poses.append(target_pose.pose)
-        pos_con.weight = 1.0
+        constraints.position_constraints.append(pos_con)
 
-        # Orientation (Wide tolerance to prevent planning failure)
+        # Orientation Constraint (Suction cup pointing down)
         ori_con = OrientationConstraint()
         ori_con.header.frame_id = "base_link"
         ori_con.link_name = "suction_cup_link"
         ori_con.orientation.x = 0.0
-        ori_con.orientation.y = 1.0 
+        ori_con.orientation.y = 1.0
         ori_con.orientation.z = 0.0
         ori_con.orientation.w = 0.0
-        ori_con.absolute_x_axis_tolerance = 0.5
-        ori_con.absolute_y_axis_tolerance = 0.5
-        ori_con.absolute_z_axis_tolerance = 3.14
         ori_con.weight = 1.0
-
-        constraints.position_constraints.append(pos_con)
+        ori_con.absolute_x_axis_tolerance = 0.1
+        ori_con.absolute_y_axis_tolerance = 0.1
+        ori_con.absolute_z_axis_tolerance = 0.1
         constraints.orientation_constraints.append(ori_con)
-        
-        request.goal_constraints.append(constraints)
-        goal_msg.request = request
 
-        self._action_client.wait_for_server()
-        self._action_client.send_goal_async(goal_msg)
+        req.goal_constraints.append(constraints)
+        goal_msg.request = req
+        
+        self.get_logger().info(f"Moving suction_cup_link to: {x:.2f}, {y:.2f}, {z:.2f}")
+        self.move_group_client.send_goal_async(goal_msg)
 
 def main():
     rclpy.init()
-    node = HCR5SloMoPicker()
+    node = HCR5SuctionVisionController()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

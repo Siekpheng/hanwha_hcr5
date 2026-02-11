@@ -1,1 +1,1 @@
-/home/forsaken/Documents/hanwha_hcr5/build/hcr5_moveit_config/ament_cmake_environment_hooks/local_setup.sh
+/home/forsaken/Documents/hanwha_hcr5/hanwha_hcr5/build/hcr5_moveit_config/ament_cmake_environment_hooks/local_setup.sh
